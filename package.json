@@ -1,0 +1,16 @@
+{
+  "name": "js2masm",
+  "version": "1.0.0",
+  "description": "Converts nodejs to mindustry code",
+  "main": "index.js",
+  "bin": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sample-text-here",
+  "license": "ISC",
+  "dependencies": {
+    "acorn": "^8.0.1",
+    "yargs": "^15.4.1"
+  }
+}
