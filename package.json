@@ -1,5 +1,5 @@
 {
-  "name": "js2masm",
+  "name": "js2logic",
   "version": "1.0.0",
   "description": "Converts nodejs to mindustry code",
   "main": "index.js",

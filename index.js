@@ -1,24 +1,7 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
-const args = require("yargs")
-  .strict()
-  .option("verbose", {
-    alias: "v",
-    type: "boolean",
-    description: "Run with verbose logging",
-  })
-  .option("output", {
-    alias: "o",
-    description: "Where to output (Otherwise will be printed to console)",
-  })
-  .option("input", {
-    alias: "i",
-    description: "Where to output (Otherwise will be printed to console)",
-  })
-  .demandOption(["input"], "js2masm requires an input file")
-  .coerce(["input", "output"], path.resolve)
-  .help().argv;
+const args = require("./cli.js")
 
 const { Parser } = require("acorn");
 
@@ -43,18 +26,16 @@ function loop(body) {
 function parse(node) {
   switch (node.type) {
     case "VariableDeclaration":
-      const declarations = node.declarations
-      declarations.forEach(i => {
-        append(`set ${valid(i.id.name)} ${(typeof i.init === "number" ? i.init : {} || {}).value || 0}`)
-      })
+      node.declarations.forEach(i => { makeVariable(i) });
       break;
     default:
       break;
   }
 }
 
-function valid(text) {
-  return text.replace(/\$/g, "_")
+function makeVariable(v) {
+  console.log(v)
+  // append(`set ${valid(i.id.name)} ${(typeof i.init === "number" ? i.init : {} || {}).value || 0}`)
 }
 
 function append(test) {

@@ -1,13 +1,10 @@
-const fs = "{ \"asd\": 123 }"
-let a = 0;
-var b = 0;
-const c = 0;
-for (let i = 0; i < 10; i++) {
-  console.log(i);
-}
-function asd(asd) {
-  let i = 15;
+//sample
+var a = 1;
+var message1 = getLink(1);
+
+if (a > 5) {
+  print("asdf");
+  printFlush(message1);
 }
 
-asd()
-// let x = getLink(x);
+function main() {}
