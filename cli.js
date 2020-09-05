@@ -1,10 +1,11 @@
 const path = require("path");
-module.exports = require("yargs")
+const fs = require("fs");
+const args = require("yargs")
   .strict()
-  .option("verbose", {
-    alias: "v",
+  .option("force", {
+    alias: "f",
     type: "boolean",
-    description: "Run with verbose logging",
+    description: "Overwrite output file if it exists",
   })
   .option("output", {
     alias: "o",
@@ -17,3 +18,16 @@ module.exports = require("yargs")
   .demandOption(["input"], "js2masm requires an input file")
   .coerce(["input", "output"], path.resolve)
   .help().argv;
+
+const input = fs.readFileSync(args.input, "utf-8")
+const output = require("./index.js")(input);
+
+if (args.output) {
+  if (!fs.existsSync(args.output) || args.force) {
+    fs.writeFileSync(args.output, output);
+  } else {
+    throw new Error("Output file already exists (use --force or -f to force");
+  }
+} else {
+  console.log(output)
+}
