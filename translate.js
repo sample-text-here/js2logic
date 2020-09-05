@@ -30,7 +30,7 @@ function translate(code, oblock) {
 function VariableDeclaration(code, block) {
   let ret = "";
   code.declarations.forEach((i) => {
-    ret += `set ${i.id.name} ${translate(i.init, block).code}`;
+    ret += `set ${i.id.name} ${i.init ? translate(i.init, block).code : 0}\n`;
   });
   return { code: ret, done: true, line: block.line };
 }

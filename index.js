@@ -12,7 +12,7 @@ function loop(array) {
   let ret = "";
   for (var i of array) {
     let block = tprep(i);
-    ret += block.code + "\n";
+    ret += block.code;
     if (i.body) loop(i.body.body);
     if (!block.done) ret += tprep(i, block).code;
   }
