@@ -19,7 +19,7 @@ const args = require("yargs")
   .coerce(["input", "output"], path.resolve)
   .help().argv;
 
-const input = fs.readFileSync(args.input, "utf-8")
+const input = fs.readFileSync(args.input, "utf-8");
 const output = require("./index.js")(input);
 
 if (args.output) {
@@ -29,5 +29,5 @@ if (args.output) {
     throw new Error("Output file already exists (use --force or -f to force");
   }
 } else {
-  console.log(output)
+  console.log(output);
 }
