@@ -1,6 +1,5 @@
 const { Parser } = require("acorn");
 const translate = require("./translate.js");
-let line = 1;
 
 function parse(code) {
   code = code.replace(/\r\n/g, "\n");
@@ -20,8 +19,7 @@ function loop(array) {
 }
 
 function tprep(code, block) {
-  block = block || { code: "", done: false, line: line };
-  line++;
+  block = block || { code: "", done: false };
   return translate(code, block);
 }
 
